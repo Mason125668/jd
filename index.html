@@ -1,0 +1,215 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "8F0D72790FDB45A1B393B7DB4CE07777",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h1 style=\"text-align: left;\">一 项目简介</h1><h2 style=\"text-align: left;\">1.1项目背景</h2><p>随着电商市场竞争加剧，深入了解消费者行为、挖掘用户购物偏好与忠诚度成为提升用户留存、优化商品策略和店铺运营的关键。本数据集包含京东平台18万+条用户行为记录，涵盖用户信息、商品信息、店铺信息等多维数据，为构建全面的用户分析提供了基础。</p><h2>1.2项目目标</h2><p>①构建用户画像：从年龄、性别、会员等级、城市等级等维度描述用户特征，分析不同人群的购物偏好与活跃规律。</p><p>②探究商品属性影响：分析品类、品牌、新品上市时间等因素与用户购买行为的关系，挖掘热门品类与品牌格局。</p><p>③评估用户忠诚度：采用RFM模型对用户进行分层，识别重要价值用户、潜力用户及流失风险用户等。</p><p>④构建行为漏斗：量化用户从浏览、加购、下单到关注的转化路径，定位转化瓶颈。</p><p>⑤分析店铺运营指标：研究店铺评分、粉丝数、会员数与销量的相关性，对比新老店铺的销售表现，并考察类目竞争结构。</p><p>⑥输出可视化仪表板：基于分析结果，利用Tableau构建可视化看板，直观展示关键指标。</p>"
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "516DCF38EE3445E79C5271FBFB332DC7",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h1>二 数据说明</h1><h2>2.1 数据来源</h2><p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://www.heywhale.com/mw/dataset/610d46f8911b330017477188/file\">京东消费者行为 - </a><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://Heywhale.com\">Heywhale.com</a></p><h2>2.2 字段说明</h2><table style=\"width: 421px;\"><colgroup><col style=\"width: 202px;\"><col style=\"width: 219px;\"></colgroup><tbody><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">customer_id</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">用户ID</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">product_id</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">产品ID</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">action_date</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">行为发生日期</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">action_id</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">行为记录ID</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">type</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">行为类型</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">age_range</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">用户年龄分段</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">gender</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">用户性别</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">customer_register_date</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">用户注册账号日期</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">customer_level</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">用户会员等级</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">city_level</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">用户所在城市等级</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">brand</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">产品品牌名称</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">shop_id</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">店铺ID</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">category</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">产品类别</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">product_market_date</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">产品上市日期</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">vender_id</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">商家ID</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">fans_number</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">店铺粉丝数量</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">vip_number</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">店铺会员数量</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">shop_register_date</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">店铺注册日期</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">shop_category</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">店铺主营类目</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"202\"><p style=\"text-align: center;\">shop_score</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">店铺评分</p></td></tr></tbody></table><p></p>"
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "080BEDD600464B8F824F78ADE2AD1911",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h1><strong>三 数据处理</strong></h1><h2><strong>3.1 缺失值处理</strong></h2><p>首先，可以查看每个字段有多少条数据，然后对比有无空值。</p><pre><code>SELECT  \n    COUNT(customer_id), COUNT(product_id), COUNT(action_date), COUNT(action_id), COUNT(type),  \n    COUNT(age_range), COUNT(gender), COUNT(customer_register_date), COUNT(customer_level), COUNT(city_level),  \n    COUNT(brand), COUNT(shop_id), COUNT(category), COUNT(product_market_date), COUNT(vender_id),  \n    COUNT(fans_number), COUNT(vip_number), COUNT(shop_register_date), COUNT(shop_category), COUNT(shop_score)  \nFROM  \n    jd_database;</code></pre><p>将结果填入下表中：</p><table style=\"width: 1045px;\"><colgroup><col style=\"width: 147px;\"><col style=\"width: 71px;\"><col style=\"width: 219px;\"><col style=\"width: 71px;\"><col style=\"width: 204px;\"><col style=\"width: 65px;\"><col style=\"width: 194px;\"><col style=\"width: 74px;\"></colgroup><tbody><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"147\"><p style=\"text-align: center;\">COUNT(customer_id)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">COUNT(age_range)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183745</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"204\"><p style=\"text-align: center;\">COUNT(brand)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"65\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"194\"><p style=\"text-align: center;\">COUNT(fans_number)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"74\"><p style=\"text-align: center;\">183828</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"147\"><p style=\"text-align: center;\">COUNT(product_id)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">COUNT(gender)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"204\"><p style=\"text-align: center;\">COUNT(shop_id)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"65\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"194\"><p style=\"text-align: center;\">COUNT(vip_number)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"74\"><p style=\"text-align: center;\">183828</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"147\"><p style=\"text-align: center;\">COUNT(action_date)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">COUNT(customer_register_date)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"204\"><p style=\"text-align: center;\">COUNT(category)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"65\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"194\"><p style=\"text-align: center;\">COUNT(shop_register_date)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"74\"><p style=\"text-align: center;\">112474</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"147\"><p style=\"text-align: center;\">COUNT(action_id)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">COUNT(customer_level)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"204\"><p style=\"text-align: center;\">COUNT(product_market_date)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"65\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"194\"><p style=\"text-align: center;\">COUNT(shop_category)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"74\"><p style=\"text-align: center;\">183828</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"147\"><p style=\"text-align: center;\">COUNT(type)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"219\"><p style=\"text-align: center;\">COUNT(city_level)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"71\"><p style=\"text-align: center;\">183703</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"204\"><p style=\"text-align: center;\">COUNT(vender_id)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"65\"><p style=\"text-align: center;\">183828</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"194\"><p style=\"text-align: center;\">COUNT(shop_score)</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"74\"><p style=\"text-align: center;\">183828</p></td></tr></tbody></table><p>可以明显发现缺失字段有“用户年龄分段”，“用户所在城市等级”，“店铺注册日期”。其中，“用户年龄分段”，“用户所在城市等级”缺失值很少，做删除处理。“店铺注册日期”缺失值有7万+，因此暂时保留数据，做相关分析时再处理。</p><pre><code>SET SQL_SAFE_UPDATES = 0;  \nDELETE FROM jd_database WHERE age_range IS NULL;  \nDELETE FROM jd_database WHERE city_level IS NULL;  \nSET SQL_SAFE_UPDATES = 1;</code></pre><img src=\"https://cdn.kesci.com/upload/1773072271316_1.png?imageView2/0/w/960/h/960\"><p>也就是说共删除了137条数据。</p>"
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "B93EE3E7F4D8452ABAA36AAF9C74AC65",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h2><strong>3.2 重复值处理</strong></h2><pre><code>SELECT  \n&nbsp;&nbsp;&nbsp;&nbsp;customer_id  \nFROM  \n&nbsp;&nbsp;&nbsp;&nbsp;jd_database  \nGROUP BY  \n    customer_id, product_id, action_date, action_id, type, age_range, gender,  \n    customer_register_date, customer_level, city_level, brand, shop_id, category,  \n    product_market_date, vender_id, fans_number, vip_number, shop_register_date, shop_category, shop_score  \nHAVING COUNT(*) &gt; 1;</code></pre><p>结果：</p><table style=\"width: 120px;\"><colgroup><col style=\"width: 120px;\"></colgroup><tbody><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"120\"><p style=\"text-align: center;\">customer_id</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"120\"><p style=\"text-align: center;\">429158</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"120\"><p style=\"text-align: center;\">1085560</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"120\"><p style=\"text-align: center;\">1514987</p></td></tr></tbody></table><p>直接再创建一个表，用DISTINCT去除重复值，然后对比一下两个表有多少条数据。</p><pre><code>CREATE TABLE jd_database_new AS  \nSELECT DISTINCT * FROM jd_database;  \nSELECT  \n    COUNT(*)  \nFROM  \n    jd_database  \nUNION ALL  \nSELECT  \n    COUNT(*)  \nFROM  \n    jd_database_new;</code></pre><p>结果：</p><table style=\"width: 112px;\"><colgroup><col style=\"width: 112px;\"></colgroup><tbody><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"112\"><p style=\"text-align: center;\">COUNT(*)</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"112\"><p style=\"text-align: center;\">183691</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"112\"><p style=\"text-align: center;\">183688</p></td></tr></tbody></table><p>也就是说只有三条重复数据，处理重复值后接下来使用新表 jd_database_new。</p>"
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "464F91E8BE6941DA981D9F4E8D342D5E",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h2><strong>3.3 异常值处理</strong></h2><p>主要判断“用户年龄分段”，“用户会员等级”，“用户所在城市等级”，“店铺评分”是否在合理范围内。</p><pre><code>SELECT  \n    MAX(age_range),  \n    MIN(age_range),  \n    MAX(customer_level),  \n    MIN(customer_level),  \n    MAX(city_level),  \n    MIN(city_level),  \n    MAX(shop_score),  \n    MIN(shop_score)  \nFROM  \n    jd_database_new;</code></pre><p>发现有店铺评分为负值，查询得知有1524条店铺评分为负值，考虑到店铺评分最大值为10，0分已代表最差评价，因此出现负值认定为数据异常。为保证数据的一致性和后续分析的准确性，决定将所有负的店铺评分统一修正为0分，即业务上的最低有效分值。</p><pre><code>SET SQL_SAFE_UPDATES = 0;  \nUPDATE jd_database_new SET shop_score = 0 WHERE shop_score &lt; 0;  \nSET SQL_SAFE_UPDATES = 1;</code></pre><img src=\"https://cdn.kesci.com/upload/1773072698743_1.png?imageView2/0/w/960/h/960\"><p></p>"
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "5F03EE64C6DE4E3BA6F52C596823AE48",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h2><strong>3.4 数据格式处理</strong></h2><p>关于“action_date”，“customer_register_date”，“product_market_date”，“shop_register_date”四个时间变量。</p><p>要求：</p><p>①action_date &gt;=customer_register_date 用户必须先注册，才能产生行为；</p><p>②action_date &gt;=product_market_date用户只能对已上市的商品进行操作；</p><p>③action_date &gt;=shop_register_date用户只能在店铺注册后才能访问该店铺商品；</p><p>④product_market_date &gt;=shop_register_date商品必须在店铺注册之后才能上架。</p><pre><code>SET SQL_SAFE_UPDATES = 0;  \nDELETE FROM jd_database_new  \nWHERE action_date &lt; customer_register_date  \n   OR action_date &lt; product_market_date  \n   OR action_date &lt; shop_register_date  \n   OR product_market_date &lt; shop_register_date;  \nSET SQL_SAFE_UPDATES = 1;</code></pre><img src=\"https://cdn.kesci.com/upload/1773072768288_1.png?imageView2/0/w/960/h/960\"><p>为了方便后续使用，将各时间格式改为“年-月-日”的格式。</p><pre><code>SET SQL_SAFE_UPDATES = 0;  \nUPDATE jd_database_new  \nSET action_date = DATE_FORMAT(action_date, '%Y-%m-%d');  \nUPDATE jd_database_new  \nSET customer_register_date = DATE_FORMAT(customer_register_date, '%Y-%m-%d');  \nUPDATE jd_database_new  \nSET product_market_date = DATE_FORMAT(product_market_date, '%Y-%m-%d');  \nUPDATE jd_database_new  \nSET shop_register_date = DATE_FORMAT(shop_register_date, '%Y-%m-%d');  \nSET SQL_SAFE_UPDATES = 1;</code></pre><p>简单做一下一些变量的描述性统计，填入下表中：</p><pre><code>SELECT  \n     COUNT(DISTINCT customer_id),  \n     COUNT(action_date), MAX(action_date), MIN(action_date),  \n     COUNT(age_range), AVG(age_range), STDDEV_SAMP(age_range), MAX(age_range), MIN(age_range),  \n     COUNT(customer_level), AVG(customer_level), STDDEV_SAMP(customer_level), MAX(customer_level), MIN(customer_level),  \n     COUNT(city_level), AVG(city_level), STDDEV_SAMP(city_level), MAX(city_level), MIN(city_level),  \n     COUNT(fans_number), AVG(fans_number), STDDEV_SAMP(fans_number), MAX(fans_number), MIN(fans_number),  \n     COUNT(vip_number), AVG(vip_number), STDDEV_SAMP(vip_number), MAX(vip_number), MIN(vip_number),  \n     COUNT(shop_score), AVG(shop_score), STDDEV_SAMP(shop_score), MAX(shop_score), MIN(shop_score)  \nfrom jd_database_new;</code></pre><table style=\"width: 753px;\"><colgroup><col style=\"width: 148px;\"><col style=\"width: 110px;\"><col style=\"width: 117px;\"><col style=\"width: 130px;\"><col style=\"width: 129px;\"><col style=\"width: 119px;\"></colgroup><tbody><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"148\"><p style=\"text-align: center;\">字段</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"110\"><p style=\"text-align: center;\">计数</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"117\"><p style=\"text-align: center;\">平均值</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"130\"><p style=\"text-align: center;\">标准差</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"129\"><p style=\"text-align: center;\">最大值</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"119\"><p style=\"text-align: center;\">最小值</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"148\"><p style=\"text-align: center;\">行为发生日期</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"110\"><p style=\"text-align: center;\">181879</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"117\"><p style=\"text-align: center;\">-</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"130\"><p style=\"text-align: center;\">-</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"129\"><p style=\"text-align: center;\">2018-04-15</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"119\"><p style=\"text-align: center;\">2018-02-01</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"148\"><p style=\"text-align: center;\">用户ID</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"110\"><p style=\"text-align: center;\">139443</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"117\"><p style=\"text-align: center;\">-</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"130\"><p style=\"text-align: center;\">-</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"129\"><p style=\"text-align: center;\">-</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"119\"><p style=\"text-align: center;\">-</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"148\"><p style=\"text-align: center;\">用户年龄分段</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"110\"><p style=\"text-align: center;\">181879</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"117\"><p style=\"text-align: center;\">4.68</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"130\"><p style=\"text-align: center;\">1.53</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"129\"><p style=\"text-align: center;\">6</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"119\"><p style=\"text-align: center;\">1</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"148\"><p style=\"text-align: center;\">用户会员等级</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"110\"><p style=\"text-align: center;\">181879</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"117\"><p style=\"text-align: center;\">4.97</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"130\"><p style=\"text-align: center;\">2.33</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"129\"><p style=\"text-align: center;\">7</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"119\"><p style=\"text-align: center;\">1</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"148\"><p style=\"text-align: center;\">用户所在城市等级</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"110\"><p style=\"text-align: center;\">181879</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"117\"><p style=\"text-align: center;\">3.29</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"130\"><p style=\"text-align: center;\">1.41</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"129\"><p style=\"text-align: center;\">6</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"119\"><p style=\"text-align: center;\">1</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"148\"><p style=\"text-align: center;\">店铺粉丝数量</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"110\"><p style=\"text-align: center;\">181879</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"117\"><p style=\"text-align: center;\">68860.13</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"130\"><p style=\"text-align: center;\">245770.71</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"129\"><p style=\"text-align: center;\">9293487</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"119\"><p style=\"text-align: center;\">0</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"148\"><p style=\"text-align: center;\">店铺会员数量</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"110\"><p style=\"text-align: center;\">181879</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"117\"><p style=\"text-align: center;\">99585.94</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"130\"><p style=\"text-align: center;\">264449.78</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"129\"><p style=\"text-align: center;\">13841676</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"119\"><p style=\"text-align: center;\">0</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"148\"><p style=\"text-align: center;\">店铺评分</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"110\"><p style=\"text-align: center;\">181879</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"117\"><p style=\"text-align: center;\">5.69</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"130\"><p style=\"text-align: center;\">4.65</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"129\"><p style=\"text-align: center;\">10</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"119\"><p style=\"text-align: center;\">0</p></td></tr></tbody></table><p></p>"
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "A5438BEA44F443F69B398B5367D1CD2E",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h1><strong>四 数据分析</strong></h1><h2><strong>4.1 用户画像分析</strong></h2><h3>4.1.1&nbsp;用户特征分布</h3><p>分别查询用户年龄分段占比、用户性别占比、用户会员等级占比、用户所在城市等级占比：</p><pre><code>SELECT  \n&nbsp;&nbsp;&nbsp;&nbsp;所查询字段名（age_range/gender/customer_level/city_level）,  \n&nbsp;&nbsp;&nbsp;&nbsp;COUNT(*) num,  \n&nbsp;&nbsp;&nbsp;&nbsp;CONCAT(ROUND(COUNT(*) / (SELECT COUNT(*) FROM jd_database_new) * 100, 3), '%') Proportion  \nFROM  \n&nbsp;&nbsp;&nbsp;&nbsp;jd_database_new  \nGROUP BY 所查询字段名（age_range/gender/customer_level/city_level）  \nORDER BY 所查询字段名（age_range/gender/customer_level/city_level）&nbsp;ASC;</code></pre><img src=\"https://cdn.kesci.com/upload/1773193717124_1.png?imageView2/0/w/960/h/960\"><p></p>"
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "E79DE38C77A74607B36671A649E372D6",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h3>4.1.2&nbsp;用户活跃分析</h3><p>因为大多数业务存在明显的周期性波动。例如，周一至周五流量高，周六周日流量低（或者像娱乐类应用反之）。因此计算每周活跃用户数的pv（Page View，页面浏览量）、uv（Unique Visitor，独立访客数）、pv/uv（浏览深度）。</p><p>第一步：为了方便我们直接从起始日开始，7天为一周。先做编号操作，即先按时间顺序编号比如前七天编号为0，再七天编号为1...</p><pre><code>WITH t1 as (  \nSELECT  \n    action_date,  \n    FLOOR(DATEDIFF(action_date, '2018-02-01') / 7) AS num,  \n    COUNT(customer_id) AS pv,  \n    COUNT(DISTINCT customer_id) AS uv  \nFROM  \n    jd_database_new  \nGROUP BY action_date  \n)</code></pre><p>第二步：</p><pre><code>①(SELECT MIN(action_date) FROM jd_database_new) 开始日期；</code></pre><pre><code>②(SELECT MAX(action_date) FROM jd_database_new) 结束日期；</code></pre><pre><code>③DATE_ADD((SELECT MIN(action_date) FROM jd_database_new), INTERVAL (num 7) DAY) 计算每周的起始日期：起始日期+num 7；</code></pre><pre><code>④DATE_ADD((SELECT MIN(action_date) FROM jd_database_new), INTERVAL (num * 7 + 6) DAY) 计算每周的终止日期：每周起始日期+6。</code></pre><p>带入下方代码即可：</p><pre><code>SELECT  \n    CONCAT(start_date, ' 至 ', end_date) AS date,  \n    PV AS \"每周PV\",  \n    UV AS \"每周UV\",  \n    ROUND(PV / UV, 2) AS \"pv/uv\"  \nFROM (SELECT  \n        num,  \n        ③ AS start_date,  \n        IF(④ &gt; ②, ②, ④) AS end_date,  \n        SUM(pv) PV,   \n        SUM(uv) UV  \n     FROM t1  \n     GROUP BY num  \n     )t2;</code></pre><img src=\"https://cdn.kesci.com/upload/1773193917631_1.png?imageView2/0/w/960/h/960\"><p></p>"
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "A14C04695BE948A38969D3CE89E5A862",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h3>4.1.3&nbsp;用户留存分析</h3><p>计算用户的平均次日留存率：</p><pre><code>SELECT  \n    ROUND(SUM(IF(t2.date IS NOT NULL, 1, 0)) / COUNT(t1.date), 4) avg_ret  \nFROM  \n    (SELECT DISTINCT  \n        customer_id, action_date date  \n    FROM  \n        jd_database_new) t1  \nLEFT JOIN  \n    (SELECT DISTINCT  \n        customer_id, DATE_SUB(action_date, INTERVAL 1 DAY) date  \n    FROM  \n        jd_database_new) t2  \nON t1.customer_id = t2.customer_id AND t1.date = t2.date  \nWHERE t1.date &lt; (SELECT MAX(action_date) FROM jd_database_new);</code></pre><p>计算每日新增用户的平均次日留存率：</p><pre><code>SELECT  \n    ROUND(SUM(IF(t2.date IS NOT NULL, 1, 0)) / COUNT(t1.date), 4) new_avg_ret  \nFROM  \n    (SELECT  \n        customer_id, MIN(action_date) date  \n    FROM  \n        jd_database_new  \n    GROUP BY customer_id) t1  \nLEFT JOIN  \n    (SELECT DISTINCT  \n        customer_id, DATE_SUB(action_date, INTERVAL 1 DAY) date  \n    FROM  \n        jd_database_new) t2  \nON t1.customer_id = t2.customer_id AND t1.date = t2.date  \nWHERE t1.date &lt; (SELECT MAX(action_date) FROM jd_database_new);</code></pre><p>结果如下：</p><table style=\"width: 341px;\"><colgroup><col style=\"width: 197px;\"><col style=\"width: 144px;\"></colgroup><tbody><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"197\"><p style=\"text-align: center;\">avg_ret</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"144\"><p style=\"text-align: center;\">0.0278</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\" colwidth=\"197\"><p style=\"text-align: center;\">new_avg_ret</p></td><td colspan=\"1\" rowspan=\"1\" colwidth=\"144\"><p style=\"text-align: center;\">0.0169</p></td></tr></tbody></table><p></p>"
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "391B3B3BF90442C2B7D4E7D7055CE94D",
+    "notebookId": "69aeec95e75bc8797f8943ff",
+    "runtime": {
+     "status": "default",
+     "execution_status": null,
+     "is_visible": false
+    },
+    "jupyter": {},
+    "scrolled": false,
+    "tags": [],
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": "<h3>4.1.4&nbsp;小结</h3><p>用户特征分布：年龄分段以5和 6占比最高，合计超过75%，用户群体偏向中老年；性别分布中男性用户更为活跃，占比约 65%；会员等级集中在1级与5～7&nbsp;级，中高等级用户占主导；城市等级以1级与3～5&nbsp;级城市为主，反映出平台在低线城市的渗透优势。</p><p></p><p>用户活跃规律：2月初为活跃度最高峰，周PV达27020，随后在2月中旬活跃度大幅下降（除夕为2月15日），符合春节期间电商活跃度降低的普遍规律。节后（2月22日起）活跃度迅速恢复。浏览深度相对稳定，各周均稳定在1.04左右。</p><p></p><p>用户留存薄弱：整体次日留存率仅 2.78%，新增用户次日留存率更低至 1.69%，表明平台用户粘性严重不足，绝大多数用户在首次访问后便不再返回。</p>"
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "language": "python",
+   "display_name": "Python 3",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "name": "python",
+   "mimetype": "text/x-python",
+   "nbconvert_exporter": "python",
+   "file_extension": ".py",
+   "version": "3.5.2",
+   "pygments_lexer": "ipython3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
